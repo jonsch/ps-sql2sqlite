@@ -37,7 +37,7 @@ if($variablesLoaded -eq $false) {
     $dbPassword = Read-Host -Prompt "Enter your database password"
     $csvFileDirectory = Read-Host -Prompt "Enter the directory to save CSV files"
     $sqliteFile = Read-Host -Prompt "Enter the path where you would like to save your SQLite database (.db) file"
-    sqliteExecutable = Read-Host -Prompt "Enter the path to your SQLite3 executable"
+    $sqliteExecutable = Read-Host -Prompt "Enter the path to your SQLite3 executable"
 
     $tblArray = $tblNames -split ',' | ForEach-Object { "`"$_`"" }
 
@@ -130,7 +130,7 @@ foreach ($tableName in $tblNames) {
 }
 
 # check if the sql connection is open and if it is, close it
-if($sqlConnection.State -eq [System.Data.ConnectionString]::Open) {
+if($sqlConnection.State -eq [System.Data.ConnectionState]::Open) {
     $sqlConnection.Close()
 }
 
